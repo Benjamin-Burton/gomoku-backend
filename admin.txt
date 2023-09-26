@@ -1,0 +1,10 @@
+mongo admin user
+username: berny222
+password: W4qtiUTTeNPDNZ1C
+
+app user:
+app-user
+JL77DiSnOhA6sz5R
+
+If you can't connect to mongoDb, it may well be beacuse your system time is
+not the same in Linux as in Windows; magic fix: sudo hwclock -s.
