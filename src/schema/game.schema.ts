@@ -3,35 +3,41 @@ import { object, string, number, TypeOf } from "zod";
 // 'part' of the schema - body is an object containing a game id which is a string.
 // this is required. 
 const payload = {
-    // all the stuff needed for creating/modifying a game - its fields
+    // all the stuff needed for creating a game - its fields
     body: object({
-        playerOneId: string({
-            required_error: "player2 Id required.",
+        playerOne: string({
+            required_error: "player1 Id required.",
         }),
-        playerTwoId: string({
+        playerTwo: string({
             required_error: "player2 Id required."
         }),
-        firstPlayer: string({
+        firstPlayer: number({
             required_error: "first player required."
         }),
-        boardsize: number({
+        boardSize: number({
             required_error: "board size required."
+        }),
+        username: string({
+            required_error: "username is required."
         })
     }),
 }
 
 const getParams = {
     params: object({
-        gameId: string({
+        gameid: string({
             required_error: "game Id required.",
         })
     })
 }
 
-const updateDeleteParams = {
+const makeMoveParams = {
     params: object({
-        gameId: string({
+        gameid: string({
             required_error: "game Id required.",
+        }),
+        move: string({
+            required_error: "move index required."
         })
     })
 }
@@ -46,6 +52,26 @@ const updateDeleteParams = {
 
 export const getGamesSchema = object({
     // nothing required
+})
+
+export const getGameByIdSchema = object({
+    ...getParams
+})
+
+export const createGameSchema = object({
+    ...payload
+})
+
+export const makeMoveSchema = object({
+    ...makeMoveParams
+})
+
+export const getGameByUsernameSchema = object({
+    params: object({
+        username: string({
+            required_error: "username required."
+        })
+    })
 })
 
 // this one allows to create the type is typescript based on the above

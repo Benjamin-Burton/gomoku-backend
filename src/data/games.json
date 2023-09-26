@@ -1,0 +1,22 @@
+[
+    {
+        "playerOne": "ben", 
+        "playerTwo": "petra",
+        "winner": "none",
+        "firstPlayer": 1,
+        "movelist": [1, 2, 3],
+        "boardsize": 5,
+        "username": "ben",
+        "completed": false
+    },
+    {
+        "playerOne": "petra",
+        "playerTwo": "ben",
+        "winner": "none",
+        "firstPlayer": 2,
+        "movelist": [4, 5, 6],
+        "boardsize": 9,
+        "username": "marker",
+        "completed": false
+    }
+]
