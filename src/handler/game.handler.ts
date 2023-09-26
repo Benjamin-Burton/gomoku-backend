@@ -5,10 +5,14 @@ import { createGameSchema, makeMoveSchema, getGameByIdSchema, getGameByUsernameS
 
 import { createGame, getAllGames, getGameById, getGamesByUsername, updateGame } from '../service/game.service'
 
-const gamesRouter = express.Router();
+import { deserializeUser } from "../middleware/deserializeUser";
 
+const gamesRouter = express.Router();
+gamesRouter.use(deserializeUser);
 // return all the games
 gamesRouter.get("/", validateSchema(getGamesSchema), async (req: Request, res: Response) => {
+    const userId = req.userId;
+    console.log(userId);
     try {
         const result = await getAllGames();
         return res.status(200).send(

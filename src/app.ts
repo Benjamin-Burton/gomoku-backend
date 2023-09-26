@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import { request } from 'http';
 import mongoose from 'mongoose';
 
-
+import authHandler from './handler/auth.handler';
 import connectDB from './util/connectDB';
 import userRouter from './handler/user.handler';
 import gamesRouter from './handler/game.handler';
@@ -19,6 +19,7 @@ const port = process.env.PORT;
 app.use(express.json()); // enables JSON data from the body
 app.use('/users', userRouter);
 app.use('/games', gamesRouter);
+app.use('/auth', authHandler);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello World!');

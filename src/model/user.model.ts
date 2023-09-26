@@ -3,8 +3,8 @@ import mongoose, { Document } from "mongoose";
 export interface UserDocument extends Document {
     username: string;
     password: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 const userSchema = new mongoose.Schema({
