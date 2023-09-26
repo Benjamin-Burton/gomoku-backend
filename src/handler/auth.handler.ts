@@ -27,17 +27,19 @@ authHandler.post("/register", validateSchema(registerSchema), async (req: Reques
             username,
             password: encryptedPassword,
         });
-
+        console.log("got here!")
         // Create token
         const token = signJwt({ username, _id: newUser._id });
 
-        // return new user with token
+        console.log("hot here!")
+        // return web token to the client side
         res.status(200).json({ _id: newUser._id, token });
     } catch (err) {
         return res.status(500).send(err);
     }
 })
 
+// needs validation middleware
 authHandler.post("/login", async (req: Request<{}, {}, LoginInput["body"]>, res: Response) => {
     try {
         // Get user input

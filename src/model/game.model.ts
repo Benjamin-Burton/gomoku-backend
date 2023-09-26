@@ -1,4 +1,5 @@
 import mongoose, { Document } from "mongoose";
+import { boolean } from "zod";
 
 export interface GameDocument extends Document {
     playerOne: string;
@@ -9,6 +10,10 @@ export interface GameDocument extends Document {
     movelist: [number];
     boardSize: number;
     username: string; // nameof the user who created this game
+    boardModel: [[number]];
+    finished: boolean;
+    currentPlayer: number;
+    winList?: Array<number>;
 }
 
 const gameSchema = new mongoose.Schema({
@@ -19,7 +24,11 @@ const gameSchema = new mongoose.Schema({
     firstPlayer: { type: Number, require: true },
     movelist: { type: [Number], require: true },
     boardSize: { type: Number, require: true },
-    username: { type: String, require: true }
+    username: { type: String, require: true },
+    boardModel: { type: Array<Array<number>>, require: true },
+    finished: { type: Boolean, require: true },
+    currentPlayer: { type: Number, require: true },
+    winList: { type: [Number], require: false }
 })
 
 export default mongoose.model<GameDocument>('Game', gameSchema)

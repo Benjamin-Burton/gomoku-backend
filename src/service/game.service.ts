@@ -19,7 +19,8 @@ export async function getGamesByUsername(username: string) {
 }
 
 export async function createGame(input: DocumentDefinition<GameDocument>) {
-    return await GameModel.create(input)
+    const result = await GameModel.create(input)
+    return result
 }
 
 export async function updateGame(id: string, game: DocumentDefinition<GameDocument>) {
