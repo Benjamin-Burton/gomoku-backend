@@ -3,6 +3,7 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { request } from 'http';
 import mongoose from 'mongoose';
+import cors from 'cors'
 
 import authHandler from './handler/auth.handler';
 import connectDB from './util/connectDB';
@@ -16,7 +17,12 @@ connectDB();
 const app: Express = express();
 const port = process.env.PORT;
 
+app.use(cors({
+    origin: process.env.allowHost || true
+}))
+
 app.use(express.json()); // enables JSON data from the body
+
 app.use('/users', userRouter);
 app.use('/games', gamesRouter);
 app.use('/auth', authHandler);
