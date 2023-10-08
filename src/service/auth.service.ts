@@ -1,4 +1,3 @@
-import DocumentDefinition from 'mongoose';
 import mongoose from 'mongoose';
 import UserModel, { UserDocument } from '../model/user.model';
 
@@ -10,6 +9,6 @@ export async function getUserById(id: string) {
     return UserModel.findOne({ _id: new mongoose.Types.ObjectId(id) }).lean();
 }
 
-export async function createUser(user: DocumentDefinition<UserDocument>) {
+export async function createUser(user: any) {
     return UserModel.create(user);
 }

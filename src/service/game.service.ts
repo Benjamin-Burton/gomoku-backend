@@ -1,6 +1,6 @@
 import GameModel from "../model/game.model";
 import mongoose from 'mongoose';
-import { DocumentDefinition } from 'mongoose';
+// import { DocumentDefinition } from 'mongoose';
 import { GameDocument } from '../model/game.model';
 
 
@@ -18,12 +18,13 @@ export async function getGamesByUsername(username: string) {
     return await GameModel.find({ username }).lean();
 }
 
-export async function createGame(input: DocumentDefinition<GameDocument>) {
+// note used to be DOcumentDefinition but something went wrong so changing to any type
+export async function createGame(input: any) {
     const result = await GameModel.create(input)
     return result
 }
 
-export async function updateGame(id: string, game: DocumentDefinition<GameDocument>) {
+export async function updateGame(id: string, game: any) {
     return GameModel.findOneAndUpdate(
         { _id: new mongoose.Types.ObjectId(id) },
         game,
